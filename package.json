@@ -2,6 +2,9 @@
   "name": "my-app",
   "version": "0.1.0",
   "private": true,
+  "scripts": {
+    "eject": "react-scripts eject"
+  },
   "dependencies": {
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
