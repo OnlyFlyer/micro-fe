@@ -1,5 +1,7 @@
+// import './public-path';
 import React from 'react';
 import ReactDOM from 'react-dom/client';
+import { BrowserRouter } from 'react-router-dom';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
@@ -25,6 +27,13 @@ export async function bootstrap() {
 }
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
+root.render(
+  <BrowserRouter basename='/react'>
+    <React.StrictMode>
+      <App />
+    </React.StrictMode>
+  </BrowserRouter>
+);
 
 /**
  * 应用每次进入都会调用 mount 方法，通常我们在这里触发应用的渲染方法
@@ -33,9 +42,11 @@ export async function mount(props) {
   // ReactDOM.render(<App />, props.container ? props.container.querySelector('#root') : document.getElementById('root'));
   console.log('=======react-app mount=======');
   root.render(
-    <React.StrictMode>
-      <App />
-    </React.StrictMode>
+    <BrowserRouter>
+      <React.StrictMode>
+        <App />
+      </React.StrictMode>
+    </BrowserRouter>
   );
   console.log('=======react-app mount=======');
 }
