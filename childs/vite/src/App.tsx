@@ -1,11 +1,15 @@
 import { useState } from 'react'
 import reactLogo from './assets/react.svg'
+import { Routes, Route, Link } from 'react-router-dom';
 import viteLogo from '/vite.svg'
 import './App.css'
 
-function App() {
-  const [count, setCount] = useState(0)
+import Home from './pages/vite_home';
+import User from './pages/vite_user';
+import PageA from './pages/vite_a';
+import NotFound from './pages/404/index';
 
+function App() {
   return (
     <>
       <div>
@@ -18,16 +22,21 @@ function App() {
       </div>
       <h1>Vite + React</h1>
       <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
         <p>
           Edit <code>src/App.tsx</code> and save to test HMR
         </p>
       </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
+      <Routes>
+          <Route path='/' element={<Home />} />
+          <Route path='home' element={<Home />} />
+          <Route path='user' element={<User />} />
+          <Route path='a' element={<PageA />} />
+          <Route path='*' element={<NotFound />} />
+        </Routes>
+        <h1>Vite</h1>
+        <Link to="/home">去 home 页</Link>
+        <Link to="/user">去 user 页</Link>
+        <Link to="/a">去 a 页</Link>
     </>
   )
 }
