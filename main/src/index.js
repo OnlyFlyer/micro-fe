@@ -1,8 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import { BrowserRouter, RouterProvider } from 'react-router-dom';
-import './index.css';
-// import App from './App';
+import { RouterProvider } from 'react-router-dom';
 import reportWebVitals from './reportWebVitals';
 import qiankunStart from './qiankun';
 import { objectRoutes } from './routes';
