@@ -30,13 +30,13 @@ let root = null;
 
 function render(props) {
   const { container } = props;
-  root = ReactDOM.createRoot(container ? container.getElementById('root') : document.getElementById('root'))
+  root = ReactDOM.createRoot(container ? container.querySelector('#root') : document.getElementById('root'))
   root.render(
-    <BrowserRouter basename={window.__POWERED_BY_QIANKUN__ ? '/react' : ''}>
-      <React.StrictMode>
+    <React.StrictMode>
+      <BrowserRouter basename={window.__POWERED_BY_QIANKUN__ ? '/react' : ''}>
         <App />
-      </React.StrictMode>
-    </BrowserRouter>
+      </BrowserRouter>
+    </React.StrictMode>
   );
 };
 if (!window.__POWERED_BY_QIANKUN__) {
@@ -49,6 +49,8 @@ if (!window.__POWERED_BY_QIANKUN__) {
 export async function mount(props) {
   // ReactDOM.render(<App />, props.container ? props.container.querySelector('#root') : document.getElementById('root'));
   console.log('=======react-app mount=======');
+  console.log('react-app mount props', props);
+  window.ccc = props;
   render(props);
   console.log('=======react-app mount=======');
 }

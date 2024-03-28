@@ -1,10 +1,17 @@
-import logo from './logo.svg';
+// import logo from './logo.svg';
 import './App.css';
+import React from 'react';
+import { useRoutes } from 'react-router-dom';
+import { routes } from './routes';
 
 function App() {
+  const elements = useRoutes(routes);
+  console.log(elements, '--999');
   return (
     <div className="App">
-      <header className="App-header">
+      <h1>这是主应用 App 页面</h1>
+        {elements}
+      {/* <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
         <p>
           Edit <code>src/App.js</code> and save to reload.
@@ -17,7 +24,7 @@ function App() {
         >
           Learn React
         </a>
-      </header>
+      </header> */}
     </div>
   );
 }

@@ -188,6 +188,7 @@ module.exports = function (webpackEnv) {
   };
 
   return {
+    // publicPath: '',
     target: ['browserslist'],
     // Webpack noise constrained to errors and warnings
     stats: 'errors-warnings',
@@ -203,11 +204,6 @@ module.exports = function (webpackEnv) {
     // This means they will be the "root" imports that are included in JS bundle.
     entry: paths.appIndexJs,
     output: {
-      // ---------------micro app config-----------------
-      library: `${pkgName}-[name]`,                  // -
-      libraryTarget: 'umd',                          // -
-      chunkLoadingGlobal: `webpackJsonp_${pkgName}`, // -
-      // ------------------------------------------------
       // The build folder.
       path: paths.appBuild,
       // Add /* filename */ comments to generated require()s in the output.
@@ -234,6 +230,13 @@ module.exports = function (webpackEnv) {
               .replace(/\\/g, '/')
         : isEnvDevelopment &&
           (info => path.resolve(info.absoluteResourcePath).replace(/\\/g, '/')),
+      // ---------------micro app config-----------------
+      library: `${pkgName}-[name]`,                  // -
+      libraryTarget: 'umd',                          // -
+      chunkLoadingGlobal: `webpackJsonp_${pkgName}`, // -
+      // jsonpFunction: `webpackJsonp_${pkgName}`,      // -
+      globalObject: 'window',                        // -
+      // ------------------------------------------------
     },
     cache: {
       type: 'filesystem',

@@ -1,5 +1,5 @@
 {
-  "name": "my-app",
+  "name": "react-app",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
@@ -59,12 +59,9 @@
     "workbox-webpack-plugin": "^6.4.1"
   },
   "scripts": {
-    "dev-": "node scripts/start.js",
-    "build-": "node scripts/build.js",
-    "test-": "node scripts/test.js",
-    "dev": "rescripts start",
-    "build": "rescripts build",
-    "test": "rescripts test"
+    "dev": "node scripts/start.js",
+    "build": "node scripts/build.js",
+    "test": "node scripts/test.js"
   },
   "eslintConfig": {
     "extends": [
@@ -139,8 +136,5 @@
     "presets": [
       "react-app"
     ]
-  },
-  "devDependencies": {
-    "@rescripts/cli": "^0.0.16"
   }
 }
