@@ -8,10 +8,6 @@ import Home from './pages/home';
 import User from './pages/user';
 import NotFound from './pages/404';
 
-function Temp() {
-  return <></>
-};
-
 function App() {
   return (
     <div className="App">

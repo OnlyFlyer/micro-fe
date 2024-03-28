@@ -1,4 +1,5 @@
-// import './public-path';
+/* eslint-disable @typescript-eslint/no-explicit-any */
+import './public-path';
 import React from 'react'
 import ReactDOM from 'react-dom/client'
 import { BrowserRouter } from 'react-router-dom';
@@ -10,34 +11,42 @@ import './index.css'
  * 通常我们可以在这里做一些全局变量的初始化，比如不会在 unmount 阶段被销毁的应用级别的缓存等。
  */
 export async function bootstrap() {
-  console.log('=======vite-app bootstraped=======');
+  console.log('=======vite-react-app bootstraped=======');
 }
 
-const root = ReactDOM.createRoot(document.getElementById('root')!);
+let root: any = null;
 
-root.render(
-  <BrowserRouter basename='/vite'>
-    <React.StrictMode>
-      <App />
-    </React.StrictMode>
-  </BrowserRouter>,
-)
+function render(props: any) {
+  const { container } = props;
+  root = ReactDOM.createRoot(container ? container.getElementById('root') : document.getElementById('root'))
+  root.render(
+    <BrowserRouter basename={window.__POWERED_BY_QIANKUN__ ? '/vite' : ''}>
+      <React.StrictMode>
+        <App />
+      </React.StrictMode>
+    </BrowserRouter>,
+  )
+}
+
+if (!window.__POWERED_BY_QIANKUN__) {
+  render({});
+}
+
+declare global {
+  interface Window {
+    __POWERED_BY_QIANKUN__: boolean;
+  }
+}
 
 /**
  * 应用每次进入都会调用 mount 方法，通常我们在这里触发应用的渲染方法
  */
 export async function mount(props: Record<string, string>) {
   // ReactDOM.render(<App />, props.container ? props.container.querySelector('#root') : document.getElementById('root'));
-  console.log('=======vite-app mount=======');
-  console.log('vite-app props', props);
-  root.render(
-    <BrowserRouter basename='/vite'>
-      <React.StrictMode>
-        <App />
-      </React.StrictMode>
-    </BrowserRouter>
-  );
-  console.log('=======vite-app mount=======');
+  console.log('=======vite-react-app mount=======');
+  console.log('vite-react-app props', props);
+  render(props);
+  console.log('=======vite-react-app mount=======');
 }
 
 /**
@@ -47,17 +56,17 @@ export async function unmount(props: Record<string, string>) {
   // ReactDOM.unmountComponentAtNode(
   //   props.container ? props.container.querySelector('#root') : document.getElementById('root'),
   // );
-  console.log('=======vite-app unmount=======');
+  console.log('=======vite-react-app unmount=======');
   console.log('unmount props', props);
   root.unmount();
-  console.log('=======vite-app unmount=======');
+  console.log('=======vite-react-app unmount=======');
 }
 
 /**
  * 可选生命周期钩子，仅使用 loadMicroApp 方式加载微应用时生效
  */
 export async function update(props: Record<string, string>) {
-  console.log('=======vite-app update=======');
+  console.log('=======vite-react-app update=======');
   console.log('update props', props);
-  console.log('=======vite-app update=======');
+  console.log('=======vite-react-app update=======');
 }

@@ -1,4 +1,4 @@
-// import './public-path';
+import './public-path';
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { BrowserRouter } from 'react-router-dom';
@@ -26,14 +26,22 @@ export async function bootstrap() {
   console.log('=======react-app bootstraped=======');
 }
 
-const root = ReactDOM.createRoot(document.getElementById('root'));
-root.render(
-  <BrowserRouter basename='/react'>
-    <React.StrictMode>
-      <App />
-    </React.StrictMode>
-  </BrowserRouter>
-);
+let root = null;
+
+function render(props) {
+  const { container } = props;
+  root = ReactDOM.createRoot(container ? container.getElementById('root') : document.getElementById('root'))
+  root.render(
+    <BrowserRouter basename={window.__POWERED_BY_QIANKUN__ ? '/react' : ''}>
+      <React.StrictMode>
+        <App />
+      </React.StrictMode>
+    </BrowserRouter>
+  );
+};
+if (!window.__POWERED_BY_QIANKUN__) {
+  render({});
+}
 
 /**
  * 应用每次进入都会调用 mount 方法，通常我们在这里触发应用的渲染方法
@@ -41,13 +49,7 @@ root.render(
 export async function mount(props) {
   // ReactDOM.render(<App />, props.container ? props.container.querySelector('#root') : document.getElementById('root'));
   console.log('=======react-app mount=======');
-  root.render(
-    <BrowserRouter>
-      <React.StrictMode>
-        <App />
-      </React.StrictMode>
-    </BrowserRouter>
-  );
+  render(props);
   console.log('=======react-app mount=======');
 }
 
@@ -59,6 +61,7 @@ export async function unmount(props) {
   //   props.container ? props.container.querySelector('#root') : document.getElementById('root'),
   // );
   console.log('=======react-app unmount=======');
+  console.log('unmount props', props);
   root.unmount();
   console.log('=======react-app unmount=======');
 }
