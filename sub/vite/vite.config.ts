@@ -1,5 +1,7 @@
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
+// import qiankun from 'vite-plugin-qiankun';
+import { name } from './package.json';
 
 // https://vitejs.dev/config/
 export default defineConfig({
@@ -17,9 +19,11 @@ export default defineConfig({
   },
   build: {
     rollupOptions: {
-
+      output: {
+        chunkFileNames: `webpackJsonp_${name}`,
+        format: 'umd',
+      },
     },
-    // ss
   },
   // esbuild: {},
 })

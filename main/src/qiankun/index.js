@@ -17,19 +17,19 @@ registerMicroApps([
     name: 'vite',
     entry: '//localhost:3001',
     container: '#vite-root',
-    activeRule: '/vite',
+    activeRule: '/main/vite',
   },
   {
     name: 'swc',
     entry: '//localhost:4001',
     container: '#swc-root',
-    activeRule: '/swc',
+    activeRule: '/main/swc',
   },
   {
     name: 'react-app',
     entry: '//localhost:5001',
     container: '#react-root',
-    activeRule: '/react',
+    activeRule: '/main/react',
   },
 ], {
   beforeLoad: (app) => {

@@ -33,7 +33,7 @@ function render(props) {
   root = ReactDOM.createRoot(container ? container.querySelector('#root') : document.getElementById('root'))
   root.render(
     <React.StrictMode>
-      <BrowserRouter basename={window.__POWERED_BY_QIANKUN__ ? '/react' : ''}>
+      <BrowserRouter basename={window.__POWERED_BY_QIANKUN__ ? '/main/react' : ''}>
         <App />
       </BrowserRouter>
     </React.StrictMode>
