@@ -7,7 +7,7 @@ export default function about(props) {
     <div>
       <h1>这是 main-app 的 about 页面</h1>
       <div>
-        <Link to="home">去 home</Link>
+        <Link to="/home">去 home</Link>
         <div style={{ marginTop: 10 }} />
         <Link to="/user">去 user</Link>
       </div>

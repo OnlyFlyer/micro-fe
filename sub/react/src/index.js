@@ -30,7 +30,7 @@ let root = null;
 
 function render(props) {
   const { container } = props;
-  root = ReactDOM.createRoot(container ? container.querySelector('#root') : document.getElementById('root'))
+  root = ReactDOM.createRoot(container ? container.querySelector('#reactRoot') : document.getElementById('reactRoot'))
   root.render(
     <React.StrictMode>
       <BrowserRouter basename={window.__POWERED_BY_QIANKUN__ ? '/main/react' : ''}>

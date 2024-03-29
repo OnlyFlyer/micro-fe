@@ -1,35 +1,31 @@
 import { registerMicroApps, start } from 'qiankun'; // loadMicroApp
 
-// const store = {
-//   name: '张三',
-//   age: 18
-// };
+const info = {
+  name: '主应用 - react',
+  addr: '浙江杭州',
+};
 
 registerMicroApps([
-  // {
-  //   name: 'sub-app',
-  //   entry: '//localhost:2001',
-  //   container: '#main',
-  //   activeRule: '/sub-app',
-  //   props: { store },
-  // },
   {
     name: 'vite',
     entry: '//localhost:3001',
     container: '#vite-root',
     activeRule: '/main/vite',
+    props: { info, current: 'vite' },
   },
   {
     name: 'swc',
     entry: '//localhost:4001',
     container: '#swc-root',
     activeRule: '/main/swc',
+    props: { info, current: 'swc' },
   },
   {
     name: 'react-app',
     entry: '//localhost:5001',
     container: '#react-root',
     activeRule: '/main/react',
+    props: { info, current: 'react' },
   },
 ], {
   beforeLoad: (app) => {

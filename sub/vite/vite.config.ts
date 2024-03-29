@@ -1,11 +1,16 @@
 import { defineConfig } from 'vite'
-import react from '@vitejs/plugin-react'
-import { name } from './package.json';
+// import react from '@vitejs/plugin-react'
 import * as path from 'path';
+import qiankun from 'vite-plugin-qiankun';
+
+import { name } from './package.json';
 
 // https://vitejs.dev/config/
 export default defineConfig({
-  plugins: [react()],
+  plugins: [
+    // react()
+    qiankun('/vite', { useDevMode: true })
+  ],
   // base: '/',
   preview: {
     headers: {
@@ -26,12 +31,15 @@ export default defineConfig({
       entry: path.resolve(__dirname, "src/main.tsx"),
       formats: ['umd'],
     },
-    // rollupOptions: {
-    //   output: {
-    //     chunkFileNames: `webpackJsonp_${name}`,
-    //     format: 'umd',
-    //   },
-    // },
+    rollupOptions: {
+      // 在 vite 2.0 + 的版本中的 vite.config.ts ， 在 rollupOptions. preserveEntrySignatures 设置
+      // 为 strict。 如果设置为 false 会无法正常工作。
+      preserveEntrySignatures: 'strict',
+      output: {
+        // chunkFileNames: `webpackJsonp_${name}`,
+        format: 'umd',
+      },
+    },
   },
   // esbuild: {},
 })

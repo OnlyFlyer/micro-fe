@@ -1,31 +1,58 @@
-import reactLogo from './assets/react.svg'
-import { Routes, Route, Link } from 'react-router-dom';
-import viteLogo from '/vite.svg'
-import './App.css'
+import React from 'react';
+import { Routes, Route, Link, useNavigate } from 'react-router-dom';
+import { Layout, Menu } from 'antd';
+import { NotificationOutlined, AccountBookOutlined, CalculatorOutlined, EditOutlined } from '@ant-design/icons';
 
 import Home from './pages/vite_home';
 import User from './pages/vite_user';
 import PageA from './pages/vite_a';
 import NotFound from './pages/404/index';
+import './index.css';
+
+const { Content, Sider } = Layout;
+
+// 左侧菜单
+const menus = [
+  {
+    key: 'home',
+    icon: React.createElement(EditOutlined),
+    label: 'viteHome'
+  },
+  {
+    key: 'user',
+    icon: React.createElement(CalculatorOutlined),
+    label: 'viteUser'
+  },
+  {
+    key: 'a',
+    icon: React.createElement(NotificationOutlined),
+    label: 'viteA'
+  },
+  {
+    key: '404',
+    icon: React.createElement(AccountBookOutlined),
+    label: '404'
+  },
+];
 
 function App() {
+  const navigate = useNavigate();
   return (
-    <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <Routes>
+      <Layout style={{ width: '80vw' }}>
+      <Sider>
+        <Menu
+            mode="inline"
+            defaultSelectedKeys={['home']}
+            // defaultOpenKeys={['main']}
+            style={{ height: '100%', borderRight: 0 }}
+            items={menus}
+            onClick={({ key }) => {
+              navigate(key);
+            }}
+          />
+      </Sider>
+      <Content>
+        <Routes>
           <Route path='/' element={<Home />} />
           <Route path='home' element={<Home />} />
           <Route path='user' element={<User />} />
@@ -36,7 +63,9 @@ function App() {
         <Link to="/home">去 home 页</Link>
         <Link to="/user">去 user 页</Link>
         <Link to="/a">去 a 页</Link>
-    </>
+        <Link to="/zxcasher">去 404 页</Link>
+      </Content>
+    </Layout>
   )
 }
 

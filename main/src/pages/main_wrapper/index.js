@@ -53,7 +53,7 @@ const menus = [
 
 export default function Page() {
   const { token: { colorBgContainer, borderRadiusLG } } = theme.useToken();
-  const [collapsed, setCollapsed] = useState(true);
+  const [collapsed, setCollapsed] = useState(false);
   const navigate = useNavigate();
   return (
     <Layout style={{ height: '100vh', display: 'flex', flexDirection: 'column' }}>

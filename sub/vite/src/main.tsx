@@ -3,9 +3,10 @@ import './public-path';
 import React from 'react'
 import ReactDOM from 'react-dom/client'
 import { BrowserRouter } from 'react-router-dom';
-import App from './App.tsx'
-import './index.css'
+import App from './App.tsx';
 
+//引入qiankunWindow
+import renderWithQiankun, { qiankunWindow } from 'vite-plugin-qiankun/dist/helper';
 /**
  * bootstrap 只会在微应用初始化的时候调用一次，下次微应用重新进入时会直接调用 mount 钩子，不会再重复触发 bootstrap。
  * 通常我们可以在这里做一些全局变量的初始化，比如不会在 unmount 阶段被销毁的应用级别的缓存等。
@@ -18,18 +19,14 @@ let root: any = null;
 
 function render(props: any) {
   const { container } = props;
-  root = ReactDOM.createRoot(container ? container.querySelector('#root') : document.getElementById('root'))
+  root = ReactDOM.createRoot(container ? container.querySelector('#viteRoot') : document.getElementById('viteRoot'))
   root.render(
-    <BrowserRouter basename={window.__POWERED_BY_QIANKUN__ ? '/vite' : ''}>
+    <BrowserRouter basename={qiankunWindow.__POWERED_BY_QIANKUN__ ? '/main/vite' : ''}>
       <React.StrictMode>
         <App />
       </React.StrictMode>
     </BrowserRouter>,
   )
-}
-
-if (!window.__POWERED_BY_QIANKUN__) {
-  render({});
 }
 
 declare global {
@@ -69,4 +66,16 @@ export async function update(props: Record<string, string>) {
   console.log('=======vite-react-app update=======');
   console.log('update props', props);
   console.log('=======vite-react-app update=======');
+}
+
+if (!qiankunWindow.__POWERED_BY_QIANKUN__) {
+  render({});
+} else {
+  // 注册生命周期函数
+  renderWithQiankun({
+    bootstrap,
+    mount,
+    unmount,
+    update
+  });
 }
