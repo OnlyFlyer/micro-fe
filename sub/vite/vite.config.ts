@@ -1,11 +1,12 @@
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
-// import qiankun from 'vite-plugin-qiankun';
 import { name } from './package.json';
+import * as path from 'path';
 
 // https://vitejs.dev/config/
 export default defineConfig({
   plugins: [react()],
+  // base: '/',
   preview: {
     headers: {
       'Access-Control-Allow-Origin': '*',
@@ -13,17 +14,24 @@ export default defineConfig({
   },
   server: {
     port: 3001,
+    cors: true,
     headers: {
       'Access-Control-Allow-Origin': '*',
     },
   },
   build: {
-    rollupOptions: {
-      output: {
-        chunkFileNames: `webpackJsonp_${name}`,
-        format: 'umd',
-      },
+    target: 'esnext',
+    lib: {
+      name: `${name}-[name]`,
+      entry: path.resolve(__dirname, "src/main.tsx"),
+      formats: ['umd'],
     },
+    // rollupOptions: {
+    //   output: {
+    //     chunkFileNames: `webpackJsonp_${name}`,
+    //     format: 'umd',
+    //   },
+    // },
   },
   // esbuild: {},
 })

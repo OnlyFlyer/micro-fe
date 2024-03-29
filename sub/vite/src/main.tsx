@@ -3,7 +3,6 @@ import './public-path';
 import React from 'react'
 import ReactDOM from 'react-dom/client'
 import { BrowserRouter } from 'react-router-dom';
-// import { qiankunWindow, renderWithQiankun } from 'vite-plugin-qiankun/dist/hepler';
 import App from './App.tsx'
 import './index.css'
 
@@ -29,9 +28,9 @@ function render(props: any) {
   )
 }
 
-// if (!window.__POWERED_BY_QIANKUN__) {
-//   render({});
-// }
+if (!window.__POWERED_BY_QIANKUN__) {
+  render({});
+}
 
 declare global {
   interface Window {
@@ -71,9 +70,3 @@ export async function update(props: Record<string, string>) {
   console.log('update props', props);
   console.log('=======vite-react-app update=======');
 }
-
-// renderWithQiankun({ mount, bootstrap, unmount });
-
-// if (!qiankunWindow.__POWERED_BY_QIANKUN__) {
-//   render({});
-// }
