@@ -50,7 +50,6 @@ export async function mount(props) {
   // ReactDOM.render(<App />, props.container ? props.container.querySelector('#root') : document.getElementById('root'));
   console.log('=======react-app mount=======');
   console.log('react-app mount props', props);
-  window.ccc = props;
   render(props);
   console.log('=======react-app mount=======');
 }

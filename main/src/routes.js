@@ -7,9 +7,9 @@ import About from './pages/about';
 import Home from './pages/home';
 import User from './pages/user';
 
-export const objectRoutes = createBrowserRouter([
+const routes = [
   {
-    path: '/main',
+    path: '/',
     Component: MainWrapper,
     children: [
       {
@@ -31,4 +31,13 @@ export const objectRoutes = createBrowserRouter([
       },
     ],
   },
-]);
+  {
+    path: '*',
+    Component: () => '***',
+  },
+];
+
+export const objectRoutes = createBrowserRouter(
+  routes,
+  { basename: '/main' }
+);

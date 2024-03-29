@@ -21,37 +21,37 @@ const menus = [
     label: '主应用',
     children: [
       {
-        key: '/main/home',
+        key: '/home',
         label: 'home',
       },
       {
-        key: '/main/about',
+        key: '/about',
         label: 'about',
       },
       {
-        key: '/main/user',
+        key: '/user',
         label: 'user',
       },
     ],
   },
   {
-    key: '/main/react',
+    key: '/react',
     icon: React.createElement(LaptopOutlined),
     label: '子应用-react'
   },
   {
-    key: '/main/vite',
+    key: '/vite',
     icon: React.createElement(NotificationOutlined),
     label: '子应用-vite'
   },
   {
-    key: '/main/swc',
+    key: '/swc',
     icon: React.createElement(AccountBookOutlined),
     label: '子应用-swc'
   },
 ];
 
-export default function Page(props) {
+export default function Page() {
   const { token: { colorBgContainer, borderRadiusLG } } = theme.useToken();
   const [collapsed, setCollapsed] = useState(true);
   const navigate = useNavigate();
@@ -101,7 +101,6 @@ export default function Page(props) {
           <Content
             id='main-root'
             style={{
-              // padding: 24,
               margin: 0,
               minHeight: 280,
               background: colorBgContainer,
