@@ -1,7 +1,7 @@
 import './public-path.js';
 import { createApp } from 'vue'
 import Antd from 'ant-design-vue';
-import { createRouter, createWebHistory } from 'vue-router';
+import { createRouter, createWebHistory, RouterOptions } from 'vue-router';
 import { qiankunWindow, renderWithQiankun } from "vite-plugin-qiankun/es/helper";
 
 import App from './App.vue'
@@ -10,14 +10,21 @@ import DDD from './pages/swc_ddd/index.vue';
 import Home from './pages/swc_home/index.vue';
 import User from './pages/swc_user/index.vue';
 import About from './pages/swc_about/index.vue';
+import SwcWrapper from './pages/swc_wrapper/index.vue';
 
-const routes = [
-  { path: '/', component: Home },
-  { path: '/home', component: Home },
-  { path: '/about', component: About },
-  { path: '/ddd', component: DDD },
-  { path: '/404', component: NotFound },
-  { path: '/user', component: User },
+const routes: Pick<RouterOptions, 'routes'>['routes'] = [
+  {
+    path: '/',
+    component: SwcWrapper,
+    redirect: '/user',
+    children: [
+      { path: 'home', component: Home },
+      { path: '/about', component: About },
+      { path: '/ddd', component: DDD },
+      { path: '/404', component: NotFound },
+      { path: '/user', component: User },
+    ],
+  },
 ]
 
 declare global {
