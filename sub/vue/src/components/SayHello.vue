@@ -5,7 +5,7 @@ defineProps<{
 </script>
 
 <template>
-  <div>
+  <h1>
     Hello, {{name || '--'}}!
-  </div>
+  </h1>
 </template>
