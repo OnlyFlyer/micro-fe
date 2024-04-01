@@ -1,4 +1,6 @@
 import { createRouter, createWebHistory } from 'vue-router'
+import { qiankunWindow } from "vite-plugin-qiankun/es/helper";
+
 import HomeView from '../views/HomeView.vue'
 import RootWrapper from '../components/RootWrapper.vue';
 import GoodsList from '../views/GoodsList.vue';
@@ -6,7 +8,8 @@ import GoodsDetail from '../views/GoodsDetail.vue';
 import GoodsEdit from '../views/GoodsEdit.vue';
 
 const router = createRouter({
-  history: createWebHistory(import.meta.env.BASE_URL),
+  // history: createWebHistory(import.meta.env.BASE_URL),
+  history: createWebHistory(qiankunWindow.__POWERED_BY_QIANKUN__ ? '/main/vue' : '/'),
   routes: [
     {
       path: '/',

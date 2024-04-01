@@ -1,5 +1,5 @@
 import { Layout, Menu, theme, Button } from 'antd';
-import { LaptopOutlined, NotificationOutlined, UserOutlined, AccountBookOutlined, MenuUnfoldOutlined, MenuFoldOutlined } from '@ant-design/icons';
+import { LaptopOutlined, NotificationOutlined, UserOutlined, AccountBookOutlined, MenuUnfoldOutlined, MenuFoldOutlined, HomeOutlined } from '@ant-design/icons';
 
 import React, { useState } from 'react';
 import { Outlet, useNavigate } from 'react-router-dom';
@@ -48,6 +48,11 @@ const menus = [
     key: '/swc',
     icon: React.createElement(AccountBookOutlined),
     label: '子应用-swc'
+  },
+  {
+    key: '/vue',
+    icon: React.createElement(HomeOutlined),
+    label: '子应用-vue'
   },
 ];
 
@@ -111,6 +116,7 @@ export default function Page() {
             <div id="vite-root" />
             <div id="swc-root" />
             <div id="react-root" />
+            <div id="vue-root" />
             <Outlet />
           </Content>
         </Layout>

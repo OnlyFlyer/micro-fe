@@ -27,6 +27,13 @@ registerMicroApps([
     activeRule: '/main/react',
     props: { info, current: 'react' },
   },
+  {
+    name: 'vue-app',
+    entry: '//localhost:6001',
+    container: '#vue-root',
+    activeRule: '/main/vue',
+    props: { info, current: 'vue' },
+  },
 ], {
   beforeLoad: (app) => {
     console.log("before load+++++++++++", app.name);
