@@ -1,14 +1,21 @@
 <script setup lang="ts">
+import { ref } from 'vue';
 import { RouterLink, RouterView } from 'vue-router'
 import HelloWorld from './components/HelloWorld.vue'
+import SayHello from './components/SayHello.vue';
+const count = ref(0);
+
 </script>
 
 <template>
   <header>
     <img alt="Vue logo" class="logo" src="@/assets/logo.svg" width="125" height="125" />
 
-    <div class="wrapper">
+    <div class="wrapper" @click="count++">
       <HelloWorld msg="You did it!" />
+      <SayHello />
+      <SayHello :name="count.toString()" />
+      {{count}}
 
       <nav>
         <RouterLink to="/">Home</RouterLink>
