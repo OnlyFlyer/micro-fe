@@ -50,3 +50,6 @@ $ cd sub/vue
 $ npm run dev
 
 ```
+
+主应用 路由: /main
+子应用 路由: /main/react 、/main/vue、/main/swc、/main/vite
